@@ -1,6 +1,7 @@
 package com.petruchcho.examsandroid.exams;
 
 import java.util.Date;
+import java.util.UUID;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,11 +12,13 @@ public class Exam implements Comparable<Exam> {
 	private String name;
 	private int countOfQuestions;
 	private boolean isFinished;
+	private UUID id;
 
 	private final static String JSON_DATE = "date";
 	private final static String JSON_NAME = "name";
 	private final static String JSON_COUNT_OF_QUESTIONS = "count";
 	private final static String JSON_IS_FINISHED = "is_finished";
+	private final static String JSON_ID = "id";
 
 	public Exam(String name, int countOfQuestions) {
 		super();
@@ -23,6 +26,7 @@ public class Exam implements Comparable<Exam> {
 		this.countOfQuestions = countOfQuestions;
 		this.date = null;
 		isFinished = false;
+		id = UUID.randomUUID();
 	}
 
 	public Exam(JSONObject json) throws JSONException {
@@ -32,6 +36,7 @@ public class Exam implements Comparable<Exam> {
 				: null;
 		this.name = json.getString(JSON_NAME);
 		this.isFinished = json.getBoolean(JSON_IS_FINISHED);
+		id = UUID.fromString(JSON_ID);
 	}
 
 	public JSONObject toJSON() throws JSONException {
@@ -41,6 +46,7 @@ public class Exam implements Comparable<Exam> {
 		if (hasDate())
 			json.put(JSON_DATE, getDate().getTime());
 		json.put(JSON_IS_FINISHED, isFinished);
+		json.put(JSON_ID, id.toString());
 		return json;
 	}
 
@@ -80,4 +86,10 @@ public class Exam implements Comparable<Exam> {
 	public void setFinished(boolean isFinished) {
 		this.isFinished = isFinished;
 	}
+
+	public UUID getId() {
+		return id;
+	}
+	
+	
 }
