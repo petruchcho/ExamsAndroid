@@ -1,5 +1,7 @@
 package com.petruchcho.examsandroid;
 
+import java.util.UUID;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -27,7 +29,7 @@ public class StartActivity extends ActionBarActivity {
 			public void onClick(View v) {
 				Intent intent = new Intent(StartActivity.this,
 						ExamSettingsActivity.class);
-				intent.putExtra(ExamSettingsFragment.EXTRA_EXAM_ID, -1);
+				intent.putExtra(ExamSettingsFragment.EXTRA_EXAM_ID, UUID.randomUUID());
 				intent.putExtra(ExamSettingsFragment.EXTRA_SETTINGS_TYPE,
 						SettingsType.ADD);
 				startActivity(intent);
