@@ -8,8 +8,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,8 +30,8 @@ public class ExamsJSONSerializer {
         mFilename = f;
     }
 
-    public Set<Exam> loadExams() throws IOException, JSONException {
-        Set<Exam> exams = new TreeSet<Exam>();
+    public List<Exam> loadExams() throws IOException, JSONException {
+        List<Exam> exams = new ArrayList<Exam>();
         BufferedReader reader = null;
         try {
             // open and read the file into a StringBuilder
@@ -57,7 +58,7 @@ public class ExamsJSONSerializer {
         return exams;
     }
 
-    public void saveExams(Set<Exam> exams) throws JSONException, IOException {
+    public void saveExams(List<Exam> exams) throws JSONException, IOException {
         // build an array in JSON
         JSONArray array = new JSONArray();
         for (Exam c : exams)

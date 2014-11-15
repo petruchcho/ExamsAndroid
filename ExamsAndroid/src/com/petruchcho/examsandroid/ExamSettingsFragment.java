@@ -2,11 +2,14 @@ package com.petruchcho.examsandroid;
 
 import java.util.UUID;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.examsandroid.R;
 import com.petruchcho.examsandroid.exams.Exam;
@@ -20,6 +23,8 @@ public class ExamSettingsFragment extends Fragment {
 
 	private Exam exam;
 	private SettingsType settingsType;
+	
+	private Button button;
 
 	protected final static String EXTRA_EXAM_ID = "com.petruchcho.examsandroid.examsettingsfragment.id";
 	protected final static String EXTRA_SETTINGS_TYPE = "com.petruchcho.examsandroid.examsettingsfragment.type";
@@ -50,6 +55,16 @@ public class ExamSettingsFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View view = inflater
 				.inflate(R.layout.f_exam_settings, container, false);
+		button = (Button)view.findViewById(R.id.button1);
+		button.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				ExamsLab.getInstance(getActivity()).addExam(new Exam("Head", 27));
+				Intent intent = new Intent(getActivity(), ExamsListActivity.class);
+				startActivity(intent);
+			}
+		});
 		return view;
 	}
 }

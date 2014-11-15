@@ -1,5 +1,7 @@
 package com.petruchcho.examsandroid.exams;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.UUID;
@@ -10,7 +12,7 @@ public class ExamsLab {
 
 	private static final String fileName = "exams.json";
 
-	private Set<Exam> exams;
+	private List<Exam> exams;
 	private Context context;
 
 	private ExamsJSONSerializer serializer;
@@ -29,11 +31,11 @@ public class ExamsLab {
 		try {
 			exams = serializer.loadExams();
 		} catch (Exception e) {
-			exams = new TreeSet<Exam>();
+			exams = new ArrayList<Exam>();
 		}
 	}
 
-	public Set<Exam> getExams() {
+	public List<Exam> getExams() {
 		return exams;
 	}
 
@@ -50,12 +52,17 @@ public class ExamsLab {
 		
 	}
 	
-	public boolean SaveExams() {
+	public boolean saveExams() {
 		try {
 			serializer.saveExams(exams);
 			return true;
 		} catch (Exception e) {
 			return false;
 		}
+	}
+	
+	public void deleteExam(Exam exam) {
+		exams.remove(exam);
+		saveExams();
 	}
 }

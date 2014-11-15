@@ -25,6 +25,11 @@
         </activity>
         <activity
             android:name="com.petruchcho.examsandroid.ExamSettingsActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.petruchcho.examsandroid.ExamsListActivity"
             android:screenOrientation="portrait" >
         </activity>
     </application>
