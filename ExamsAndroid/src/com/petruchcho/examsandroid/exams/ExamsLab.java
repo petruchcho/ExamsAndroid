@@ -49,7 +49,6 @@ public class ExamsLab {
 	
 	public void addExam(Exam exam) {
 		exams.add(exam);
-		
 	}
 	
 	public boolean saveExams() {

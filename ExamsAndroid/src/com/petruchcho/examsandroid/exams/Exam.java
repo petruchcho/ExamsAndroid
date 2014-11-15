@@ -50,7 +50,7 @@ public class Exam implements Comparable<Exam> {
 		return json;
 	}
 
-	public Exam(Date date, String name, int countOfQuestions) {
+	public Exam(String name, int countOfQuestions, Date date) {
 		super();
 		this.date = date;
 		this.name = name;

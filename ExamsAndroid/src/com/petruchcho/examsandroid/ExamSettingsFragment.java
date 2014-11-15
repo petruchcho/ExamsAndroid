@@ -1,5 +1,7 @@
 package com.petruchcho.examsandroid;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.UUID;
 
 import android.content.Intent;
@@ -23,7 +25,7 @@ public class ExamSettingsFragment extends Fragment {
 
 	private Exam exam;
 	private SettingsType settingsType;
-	
+
 	private Button button;
 
 	protected final static String EXTRA_EXAM_ID = "com.petruchcho.examsandroid.examsettingsfragment.id";
@@ -45,9 +47,11 @@ public class ExamSettingsFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		UUID examId = (UUID) getArguments().getSerializable(EXTRA_EXAM_ID);
-		this.exam = ExamsLab.getInstance(getActivity()).getExam(examId);
 		this.settingsType = (SettingsType) getArguments().getSerializable(
 				EXTRA_SETTINGS_TYPE);
+		if (settingsType == SettingsType.EDIT) {
+			this.exam = ExamsLab.getInstance(getActivity()).getExam(examId);
+		}
 	}
 
 	@Override
@@ -55,13 +59,18 @@ public class ExamSettingsFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View view = inflater
 				.inflate(R.layout.f_exam_settings, container, false);
-		button = (Button)view.findViewById(R.id.button1);
+		button = (Button) view.findViewById(R.id.button1);
 		button.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				ExamsLab.getInstance(getActivity()).addExam(new Exam("Head", 27));
-				Intent intent = new Intent(getActivity(), ExamsListActivity.class);
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(new Date());
+				calendar.add(Calendar.DATE, 30);
+				ExamsLab.getInstance(getActivity()).addExam(
+						new Exam("Head", 37, calendar.getTime()));
+				Intent intent = new Intent(getActivity(),
+						ExamsListActivity.class);
 				startActivity(intent);
 			}
 		});
