@@ -71,6 +71,7 @@ public class ExamSettingsFragment extends Fragment {
 						new Exam("Head", 37, calendar.getTime()));
 				Intent intent = new Intent(getActivity(),
 						ExamsListActivity.class);
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 			}
 		});
