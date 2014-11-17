@@ -7,4 +7,5 @@
     <string name="add">Add</string>
     <string name="add_your_first_exam">Add Your First Exam</string>
 	<string name="exams_list_title">List Of Your Exams</string>
+	<string name="new_exam">Add New Exam</string>
 </resources>
